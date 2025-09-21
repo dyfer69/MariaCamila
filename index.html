@@ -161,117 +161,25 @@
             line-height: 1.2;
         }
         
-        .sunflower-field {
+        .bouquet-container {
             display: flex;
             justify-content: center;
-            align-items: flex-end;
+            align-items: center;
             flex-wrap: wrap;
             margin: 25px 0;
-            min-height: 200px;
-            gap: 10px;
+            gap: 20px;
         }
         
-        .sunflower {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .bouquet {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
         }
         
-        .stem {
-            width: 8px;
-            height: 120px;
-            background: linear-gradient(to right, #74c69d, #40916c);
-            margin: 0 auto;
-            border-radius: 4px;
-            position: relative;
-        }
-        
-        .flower {
-            position: relative;
-            width: 100px;
-            height: 100px;
-            margin-bottom: -20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .center {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            background: #3c1518;
-            border-radius: 50%;
-            box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-            z-index: 3;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        
-        .center-inner {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: radial-gradient(circle, #784421 10%, #3c1518 70%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .center-detail {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: radial-gradient(circle, #966b3c 20%, #784421 80%);
-        }
-        
-        .petals {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-        }
-        
-        .petal {
-            position: absolute;
-            width: 35px;
-            height: 70px;
-            background: linear-gradient(to bottom, #ffd166, #ff9e1f);
-            border-radius: 50% 50% 50% 50%;
-            transform-origin: bottom center;
-            top: 5px;
-            left: 32.5px;
-            z-index: 2;
-            box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
-        }
-        
-        .petal:nth-child(odd) {
-            background: linear-gradient(to bottom, #ffdd80, #ffb347);
-        }
-        
-        .leaf {
-            position: absolute;
-            width: 30px;
-            height: 20px;
-            background: #40916c;
-            border-radius: 50% 0 50% 50%;
-            transform: rotate(-15deg);
-            z-index: 1;
-            left: 50%;
-            margin-left: -3px;
-            top: 70px;
-        }
-        
-        .leaf:nth-child(2) {
-            transform: rotate(15deg) scaleX(-1);
-            margin-left: -27px;
+        .bouquet:hover {
+            transform: scale(1.05);
         }
         
         .message {
@@ -388,23 +296,8 @@
                 padding: 25px;
             }
             
-            .flower {
-                width: 120px;
-                height: 120px;
-            }
-            
-            .petal {
-                width: 40px;
-                height: 80px;
-                left: 40px;
-            }
-            
-            .stem {
-                height: 150px;
-            }
-            
-            .leaf {
-                top: 90px;
+            .bouquet {
+                max-width: 80%;
             }
         }
         
@@ -435,35 +328,23 @@
                 font-size: 1.5rem;
             }
             
-            .sunflower-field {
+            .bouquet-container {
                 margin: 35px 0;
-                gap: 20px;
+                gap: 30px;
             }
             
-            .flower {
-                width: 140px;
-                height: 140px;
-            }
-            
-            .petal {
-                width: 45px;
-                height: 90px;
-                left: 47.5px;
-            }
-            
-            .stem {
-                height: 180px;
-                width: 10px;
-            }
-            
-            .leaf {
-                top: 110px;
+            .bouquet {
+                max-width: 250px;
             }
         }
         
         @media (min-width: 992px) {
             h1 {
                 font-size: 3.2rem;
+            }
+            
+            .bouquet-container {
+                flex-direction: row;
             }
         }
         
@@ -486,32 +367,12 @@
                 margin: 10px 0;
             }
             
-            .sunflower-field {
-                min-height: 150px;
+            .bouquet-container {
                 margin: 15px 0;
             }
             
-            .flower {
-                width: 80px;
-                height: 80px;
-                margin-bottom: -15px;
-            }
-            
-            .petal {
-                width: 28px;
-                height: 55px;
-                left: 26px;
-            }
-            
-            .stem {
-                height: 90px;
-                width: 6px;
-            }
-            
-            .leaf {
-                top: 60px;
-                width: 25px;
-                height: 15px;
+            .bouquet {
+                max-width: 150px;
             }
         }
     </style>
@@ -533,42 +394,9 @@
         <div class="container" id="mainContainer">
             <h1>¡Feliz Cumpleaños<br>Maria Camila!</h1>
             
-            <div class="sunflower-field">
-                <!-- Girasol 1 -->
-                <div class="sunflower">
-                    <div class="flower">
-                        <div class="petals" id="petals1">
-                            <!-- Los pétalos se generarán con JavaScript -->
-                        </div>
-                        <div class="center">
-                            <div class="center-inner">
-                                <div class="center-detail"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="stem">
-                        <div class="leaf"></div>
-                        <div class="leaf"></div>
-                    </div>
-                </div>
-                
-                <!-- Girasol 2 -->
-                <div class="sunflower">
-                    <div class="flower">
-                        <div class="petals" id="petals2">
-                            <!-- Los pétalos se generarán con JavaScript -->
-                        </div>
-                        <div class="center">
-                            <div class="center-inner">
-                                <div class="center-detail"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="stem">
-                        <div class="leaf"></div>
-                        <div class="leaf"></div>
-                    </div>
-                </div>
+            <div class="bouquet-container">
+                <img src="https://cdn.pixabay.com/photo/2018/05/01/09/42/sunflowers-3365040_1280.png" alt="Ramo de girasoles" class="bouquet">
+                <img src="https://cdn.pixabay.com/photo/2023/08/25/07/23/sunflowers-8212935_1280.png" alt="Ramo de girasoles" class="bouquet">
             </div>
             
             <div class="message">
@@ -618,9 +446,6 @@
                 // Mostrar indicador de scroll
                 scrollIndicator.style.display = 'block';
                 
-                // Inicializar los elementos
-                createPetals();
-                
                 // Reproducir música automáticamente
                 setTimeout(() => {
                     audio.play().catch(e => {
@@ -632,21 +457,6 @@
                 }, 500);
             }, 1000);
         });
-        
-        // Crear pétalos para cada girasol
-        function createPetals() {
-            const petalsContainers = document.querySelectorAll('.petals');
-            const petalCount = 14; // Reducido para móviles
-            
-            petalsContainers.forEach(container => {
-                for (let i = 0; i < petalCount; i++) {
-                    const petal = document.createElement('div');
-                    petal.className = 'petal';
-                    petal.style.transform = `rotate(${i * (360 / petalCount)}deg)`;
-                    container.appendChild(petal);
-                }
-            });
-        }
         
         // Controles de música
         document.getElementById('playButton').addEventListener('click', () => {
@@ -671,14 +481,6 @@
         document.body.addEventListener('click', function() {
             // Este evento vacío sirve para desbloquear la reproducción de audio en algunos navegadores
         }, { once: true });
-        
-        // Ajustar diseño en carga según el tamaño de pantalla
-        window.addEventListener('load', function() {
-            if (window.innerWidth < 768) {
-                // Para móviles, reducir a 2 girasoles en lugar de 3
-                document.querySelector('.sunflower-field').innerHTML = document.querySelector('.sunflower-field').innerHTML;
-            }
-        });
     </script>
 </body>
 </html>
