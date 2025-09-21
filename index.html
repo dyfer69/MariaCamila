@@ -501,6 +501,7 @@
         const mainContainer = document.getElementById('mainContainer');
         const scrollIndicator = document.getElementById('scrollIndicator');
         const mainWrapper = document.getElementById('mainWrapper');
+        const audio = document.getElementById('backgroundMusic');
         
         // Función para revelar el contenido al hacer clic en la caja
         giftBox.addEventListener('click', function() {
@@ -521,6 +522,16 @@
                 
                 // Inicializar los elementos
                 createPetals();
+                
+                // Reproducir música automáticamente
+                setTimeout(() => {
+                    audio.play().catch(e => {
+                        console.log("Error al reproducir audio automáticamente: ", e);
+                        // Si falla la reproducción automática, mostramos un mensaje
+                        document.getElementById('playButton').style.backgroundColor = '#ff6b6b';
+                        document.getElementById('playButton').textContent = '⚠️ Click para reproducir';
+                    });
+                }, 500);
                 
                 // Hacer scroll suave hacia el contenido después de un breve delay
                 setTimeout(() => {
@@ -548,13 +559,13 @@
         }
         
         // Controles de música
-        const audio = document.getElementById('backgroundMusic');
         document.getElementById('playButton').addEventListener('click', () => {
             audio.play().catch(e => {
                 console.log("Error al reproducir audio: ", e);
                 alert("Para reproducir la música, necesitas interactuar con la página primero. Haz clic en cualquier parte de la página y luego en reproducir.");
             });
         });
+        
         document.getElementById('pauseButton').addEventListener('click', () => {
             audio.pause();
         });
