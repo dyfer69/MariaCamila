@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Cumpleaños María Camila</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(to bottom, #1a2980, #26d0ce);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+        
+        .scroll-container {
+            width: 100%;
+            height: 100vh;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .gift-container {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: transform 1s ease;
+        }
+        
+        .gift-box {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.5s ease;
+        }
+        
+        .gift-box:hover {
+            transform: scale(1.05);
+        }
+        
+        .gift-box .box {
+            width: 100%;
+            height: 80%;
+            background: linear-gradient(to right, #ff6b6b, #ff9e1f);
+            position: absolute;
+            bottom: 0;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .gift-box .lid {
+            width: 110%;
+            height: 30%;
+            background: linear-gradient(to right, #ff9e1f, #ff6b6b);
+            position: absolute;
+            top: 0;
+            left: -5%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+            transition: transform 1s ease;
+        }
+        
+        .gift-box.open .lid {
+            transform: rotate(-15deg) translate(-30%, -90%);
+        }
+        
+        .gift-box .ribbon {
+            width: 40px;
+            height: 100%;
+            background: #ffd166;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+        }
+        
+        .gift-box .bow {
+            width: 50px;
+            height: 50px;
+            background: #ffd166;
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50%;
+            z-index: 15;
+        }
+        
+        .gift-box .bow::before,
+        .gift-box .bow::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 30px;
+            background: #ffd166;
+            border-radius: 50%;
+            top: 10px;
+        }
+        
+        .gift-box .bow::before {
+            left: -40px;
+            transform: rotate(-30deg);
+        }
+        
+        .gift-box .bow::after {
+            right: -40px;
+            transform: rotate(30deg);
+        }
+        
+        .gift-message {
+            margin-top: 30px;
+            font-size: 1.5rem;
+            color: white;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        
+        .gift-box.open ~ .gift-message {
+            opacity: 1;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            display: none;
+            margin: 20px 0;
+        }
+        
+        h1 {
+            color: #000000;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .sunflower-field {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            margin: 40px 0;
+            min-height: 300px;
+        }
+        
+        .sunflower {
+            position: relative;
+            margin: 0 15px;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .stem {
+            width: 12px;
+            height: 180px;
+            background: linear-gradient(to right, #74c69d, #40916c);
+            margin: 0 auto;
+            border-radius: 5px;
+            position: relative;
+        }
+        
+        .flower {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            margin-bottom: -30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .center {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            background: #3c1518;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .center-inner {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #784421 10%, #3c1518 70%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .center-detail {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #966b3c 20%, #784421 80%);
+        }
+        
+        .petals {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .petal {
+            position: absolute;
+            width: 45px;
+            height: 90px;
+            background: linear-gradient(to bottom, #ffd166, #ff9e1f);
+            border-radius: 50% 50% 50% 50%;
+            transform-origin: bottom center;
+            top: 5px;
+            left: 47.5px;
+            z-index: 2;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .petal:nth-child(odd) {
+            background: linear-gradient(to bottom, #ffdd80, #ffb347);
+        }
+        
+        .leaf {
+            position: absolute;
+            width: 40px;
+            height: 25px;
+            background: #40916c;
+            border-radius: 50% 0 50% 50%;
+            transform: rotate(-15deg);
+            z-index: 1;
+            left: 50%;
+            margin-left: -5px;
+            top: 100px;
+        }
+        
+        .leaf:nth-child(2) {
+            transform: rotate(15deg) scaleX(-1);
+            margin-left: -35px;
+        }
+        
+        .message {
+            background: #87CEEB;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .message p {
+            font-size: 1.5rem;
+            color: #000000;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+            line-height: 1.5;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(to right, #1a2980, #26d0ce);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .instructions {
+            background: #f1faee;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #457b9d;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .sun-emoji {
+            font-size: 1.8rem;
+            display: inline-block;
+            animation: rotateSun 5s linear infinite;
+        }
+        
+        @keyframes rotateSun {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes reveal {
+            from { 
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .scroll-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.7);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: none;
+            z-index: 100;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
+            40% {transform: translateX(-50%) translateY(-10px);}
+            60% {transform: translateX(-50%) translateY(-5px);}
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .message p {
+                font-size: 1.2rem;
+            }
+            
+            .flower {
+                transform: scale(0.8);
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            button {
+                width: 80%;
+            }
+            
+            .gift-box {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .scroll-container {
+                padding: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-indicator" id="scrollIndicator">⮟ Desplázate hacia abajo ⮟</div>
+    
+    <div class="scroll-container">
+        <div class="gift-container" id="giftContainer">
+            <div class="gift-box" id="giftBox">
+                <div class="box"></div>
+                <div class="lid"></div>
+                <div class="ribbon"></div>
+                <div class="bow"></div>
+            </div>
+            <div class="gift-message">¡Haz clic en la caja para revelar tu regalo!</div>
+        </div>
+        
+        <div class="container" id="mainContainer">
+            <h1>¡Feliz Cumpleaños<br>Maria Camila!</h1>
+            
+            <div class="sunflower-field">
+                <!-- Girasol 1 -->
+                <div class="sunflower">
+                    <div class="flower">
+                        <div class="petals" id="petals1">
+                            <!-- Los pétalos se generarán con JavaScript -->
+                        </div>
+                        <div class="center">
+                            <div class="center-inner">
+                                <div class="center-detail"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stem">
+                        <div class="leaf"></div>
+                        <div class="leaf"></div>
+                    </div>
+                </div>
+                
+                <!-- Girasol 2 -->
+                <div class="sunflower">
+                    <div class="flower">
+                        <div class="petals" id="petals2">
+                            <!-- Los pétalos se generarán con JavaScript -->
+                        </div>
+                        <div class="center">
+                            <div class="center-inner">
+                                <div class="center-detail"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stem">
+                        <div class="leaf"></div>
+                        <div class="leaf"></div>
+                    </div>
+                </div>
+                
+                <!-- Girasol 3 -->
+                <div class="sunflower">
+                    <div class="flower">
+                        <div class="petals" id="petals3">
+                            <!-- Los pétalos se generarán con JavaScript -->
+                        </div>
+                        <div class="center">
+                            <div class="center-inner">
+                                <div class="center-detail"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stem">
+                        <div class="leaf"></div>
+                        <div class="leaf"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="message">
+                <p>Espero disfrutes mucho este día, que siempre el sol <span class="sun-emoji">☀️</span> ilumine tu sonrisa.<br> 
+                ¡Feliz Cumpleaños!</p>
+            </div>
+            
+            <div class="controls">
+                <button id="playButton">▶ Reproducir Música</button>
+                <button id="pauseButton">⏸ Pausar Música</button>
+            </div>
+            
+            <div class="instructions">
+                💡 Para una mejor experiencia, abre esta página en Chrome o Edge. Si la música no funciona, asegúrate de tener el archivo "flores-amarillas.mp3" en la misma carpeta.
+            </div>
+        </div>
+    </div>
+    
+    <audio id="backgroundMusic" loop>
+        <source src="flores-amarillas.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <script>
+        // Elementos principales
+        const giftContainer = document.getElementById('giftContainer');
+        const giftBox = document.getElementById('giftBox');
+        const mainContainer = document.getElementById('mainContainer');
+        const scrollIndicator = document.getElementById('scrollIndicator');
+        const scrollContainer = document.querySelector('.scroll-container');
+        
+        // Función para revelar el contenido al hacer clic en la caja
+        giftBox.addEventListener('click', function() {
+            // Abrir la caja
+            giftBox.classList.add('open');
+            
+            // Esperar a que termine la animación de apertura
+            setTimeout(() => {
+                // Ocultar la caja de regalo
+                giftContainer.style.display = 'none';
+                
+                // Mostrar el contenido principal con animación
+                mainContainer.style.display = 'block';
+                mainContainer.style.animation = 'reveal 1s forwards';
+                
+                // Mostrar indicador de scroll
+                scrollIndicator.style.display = 'block';
+                
+                // Inicializar los elementos
+                createPetals();
+                
+                // Hacer scroll suave hacia el contenido
+                setTimeout(() => {
+                    mainContainer.scrollIntoView({ behavior: 'smooth' });
+                }, 500);
+            }, 1000);
+        });
+        
+        // Crear pétalos para cada girasol
+        function createPetals() {
+            const petalsContainers = document.querySelectorAll('.petals');
+            const petalCount = 16;
+            
+            petalsContainers.forEach(container => {
+                for (let i = 0; i < petalCount; i++) {
+                    const petal = document.createElement('div');
+                    petal.className = 'petal';
+                    petal.style.transform = `rotate(${i * (360 / petalCount)}deg)`;
+                    container.appendChild(petal);
+                }
+            });
+        }
+        
+        // Controles de música
+        const audio = document.getElementById('backgroundMusic');
+        document.getElementById('playButton').addEventListener('click', () => {
+            audio.play().catch(e => {
+                console.log("Error al reproducir audio: ", e);
+                alert("Para reproducir la música, necesitas interactuar con la página primero. Haz clic en cualquier parte de la página y luego en reproducir.");
+            });
+        });
+        document.getElementById('pauseButton').addEventListener('click', () => {
+            audio.pause();
+        });
+        
+        // Ocultar indicador de scroll cuando el usuario se desplace
+        scrollContainer.addEventListener('scroll', function() {
+            if (scrollContainer.scrollTop > 100) {
+                scrollIndicator.style.display = 'none';
+            }
+        });
+        
+        // Permitir la reproducción de audio al hacer clic en cualquier parte de la página
+        document.body.addEventListener('click', function() {
+            // Este evento vacío sirve para desbloquear la reproducción de audio en algunos navegadores
+        }, { once: true });
+    </script>
+</body>
+</html>
