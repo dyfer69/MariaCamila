@@ -12,30 +12,25 @@
             box-sizing: border-box;
         }
         
-        body {
+        body, html {
+            height: 100%;
+            overflow: hidden;
             font-family: 'Montserrat', sans-serif;
             background: linear-gradient(to bottom, #1a2980, #26d0ce);
             color: #333;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            overflow: hidden;
         }
         
-        .scroll-container {
-            width: 100%;
+        .main-wrapper {
             height: 100vh;
+            width: 100%;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px 0;
+            padding: 20px;
         }
         
         .gift-container {
-            position: relative;
             width: 100%;
             min-height: 100vh;
             display: flex;
@@ -152,7 +147,7 @@
             position: relative;
             overflow: hidden;
             display: none;
-            margin: 20px 0;
+            margin: 20px 0 40px 0;
         }
         
         h1 {
@@ -399,8 +394,8 @@
                 height: 150px;
             }
             
-            .scroll-container {
-                padding: 10px 0;
+            .main-wrapper {
+                padding: 10px;
             }
         }
     </style>
@@ -408,7 +403,7 @@
 <body>
     <div class="scroll-indicator" id="scrollIndicator">⮟ Desplázate hacia abajo ⮟</div>
     
-    <div class="scroll-container">
+    <div class="main-wrapper" id="mainWrapper">
         <div class="gift-container" id="giftContainer">
             <div class="gift-box" id="giftBox">
                 <div class="box"></div>
@@ -489,7 +484,7 @@
             </div>
             
             <div class="instructions">
-                💡 Para una mejor experiencia, abre esta página en Chrome o Edge.
+                💡 Para una mejor experiencia, abre esta página en Chrome o Edge. Si la música no funciona, asegúrate de tener el archivo "flores-amarillas.mp3" en la misma carpeta.
             </div>
         </div>
     </div>
@@ -505,7 +500,7 @@
         const giftBox = document.getElementById('giftBox');
         const mainContainer = document.getElementById('mainContainer');
         const scrollIndicator = document.getElementById('scrollIndicator');
-        const scrollContainer = document.querySelector('.scroll-container');
+        const mainWrapper = document.getElementById('mainWrapper');
         
         // Función para revelar el contenido al hacer clic en la caja
         giftBox.addEventListener('click', function() {
@@ -527,10 +522,13 @@
                 // Inicializar los elementos
                 createPetals();
                 
-                // Hacer scroll suave hacia el contenido
+                // Hacer scroll suave hacia el contenido después de un breve delay
                 setTimeout(() => {
-                    mainContainer.scrollIntoView({ behavior: 'smooth' });
-                }, 500);
+                    mainWrapper.scrollTo({
+                        top: mainContainer.offsetTop - 20,
+                        behavior: 'smooth'
+                    });
+                }, 800);
             }, 1000);
         });
         
@@ -562,8 +560,8 @@
         });
         
         // Ocultar indicador de scroll cuando el usuario se desplace
-        scrollContainer.addEventListener('scroll', function() {
-            if (scrollContainer.scrollTop > 100) {
+        mainWrapper.addEventListener('scroll', function() {
+            if (mainWrapper.scrollTop > 100) {
                 scrollIndicator.style.display = 'none';
             }
         });
