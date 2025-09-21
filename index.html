@@ -21,13 +21,13 @@
         }
         
         .main-wrapper {
-            height: 100vh;
             width: 100%;
-            overflow-y: auto;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
+            justify-content: center;
+            padding: 15px;
         }
         
         .gift-container {
@@ -41,8 +41,8 @@
         }
         
         .gift-box {
-            width: 200px;
-            height: 200px;
+            width: 150px;
+            height: 150px;
             position: relative;
             cursor: pointer;
             transition: transform 0.5s ease;
@@ -80,7 +80,7 @@
         }
         
         .gift-box .ribbon {
-            width: 40px;
+            width: 30px;
             height: 100%;
             background: #ffd166;
             position: absolute;
@@ -90,11 +90,11 @@
         }
         
         .gift-box .bow {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             background: #ffd166;
             position: absolute;
-            top: -25px;
+            top: -20px;
             left: 50%;
             transform: translateX(-50%);
             border-radius: 50%;
@@ -105,31 +105,32 @@
         .gift-box .bow::after {
             content: '';
             position: absolute;
-            width: 60px;
-            height: 30px;
+            width: 50px;
+            height: 25px;
             background: #ffd166;
             border-radius: 50%;
-            top: 10px;
+            top: 8px;
         }
         
         .gift-box .bow::before {
-            left: -40px;
+            left: -35px;
             transform: rotate(-30deg);
         }
         
         .gift-box .bow::after {
-            right: -40px;
+            right: -35px;
             transform: rotate(30deg);
         }
         
         .gift-message {
-            margin-top: 30px;
-            font-size: 1.5rem;
+            margin-top: 25px;
+            font-size: 1.2rem;
             color: white;
             text-align: center;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             opacity: 0;
             transition: opacity 1s ease;
+            padding: 0 15px;
         }
         
         .gift-box.open ~ .gift-message {
@@ -137,24 +138,24 @@
         }
         
         .container {
-            max-width: 800px;
             width: 100%;
+            max-width: 95%;
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            padding: 20px;
             text-align: center;
             position: relative;
             overflow: hidden;
             display: none;
-            margin: 20px 0 40px 0;
+            margin: 15px 0;
         }
         
         h1 {
             color: #000000;
             font-family: 'Montserrat', sans-serif;
-            font-size: 3.2rem;
-            margin-bottom: 20px;
+            font-size: 2rem;
+            margin-bottom: 15px;
             text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
             font-weight: 700;
             line-height: 1.2;
@@ -162,16 +163,16 @@
         
         .sunflower-field {
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             align-items: flex-end;
             flex-wrap: wrap;
-            margin: 40px 0;
-            min-height: 300px;
+            margin: 25px 0;
+            min-height: 200px;
+            gap: 10px;
         }
         
         .sunflower {
             position: relative;
-            margin: 0 15px;
             z-index: 2;
             display: flex;
             flex-direction: column;
@@ -179,19 +180,19 @@
         }
         
         .stem {
-            width: 12px;
-            height: 180px;
+            width: 8px;
+            height: 120px;
             background: linear-gradient(to right, #74c69d, #40916c);
             margin: 0 auto;
-            border-radius: 5px;
+            border-radius: 4px;
             position: relative;
         }
         
         .flower {
             position: relative;
-            width: 140px;
-            height: 140px;
-            margin-bottom: -30px;
+            width: 100px;
+            height: 100px;
+            margin-bottom: -20px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -199,11 +200,11 @@
         
         .center {
             position: absolute;
-            width: 70px;
-            height: 70px;
+            width: 50px;
+            height: 50px;
             background: #3c1518;
             border-radius: 50%;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
             z-index: 3;
             display: flex;
             justify-content: center;
@@ -214,8 +215,8 @@
         }
         
         .center-inner {
-            width: 55px;
-            height: 55px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: radial-gradient(circle, #784421 10%, #3c1518 70%);
             display: flex;
@@ -224,8 +225,8 @@
         }
         
         .center-detail {
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             background: radial-gradient(circle, #966b3c 20%, #784421 80%);
         }
@@ -240,15 +241,15 @@
         
         .petal {
             position: absolute;
-            width: 45px;
-            height: 90px;
+            width: 35px;
+            height: 70px;
             background: linear-gradient(to bottom, #ffd166, #ff9e1f);
             border-radius: 50% 50% 50% 50%;
             transform-origin: bottom center;
             top: 5px;
-            left: 47.5px;
+            left: 32.5px;
             z-index: 2;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
         }
         
         .petal:nth-child(odd) {
@@ -257,76 +258,79 @@
         
         .leaf {
             position: absolute;
-            width: 40px;
-            height: 25px;
+            width: 30px;
+            height: 20px;
             background: #40916c;
             border-radius: 50% 0 50% 50%;
             transform: rotate(-15deg);
             z-index: 1;
             left: 50%;
-            margin-left: -5px;
-            top: 100px;
+            margin-left: -3px;
+            top: 70px;
         }
         
         .leaf:nth-child(2) {
             transform: rotate(15deg) scaleX(-1);
-            margin-left: -35px;
+            margin-left: -27px;
         }
         
         .message {
             background: #87CEEB;
-            padding: 25px;
-            border-radius: 15px;
-            margin: 30px 0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
         }
         
         .message p {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             color: #000000;
             font-weight: bold;
             text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
-            line-height: 1.5;
+            line-height: 1.4;
             font-family: 'Montserrat', sans-serif;
         }
         
         .controls {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin: 20px 0;
+            gap: 10px;
+            margin: 15px 0;
+            flex-wrap: wrap;
         }
         
         button {
-            padding: 12px 25px;
+            padding: 10px 20px;
             border: none;
-            border-radius: 50px;
+            border-radius: 25px;
             background: linear-gradient(to right, #1a2980, #26d0ce);
             color: white;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
             font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            min-width: 140px;
         }
         
         button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         
         .instructions {
             background: #f1faee;
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 20px;
-            font-size: 0.9rem;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 0.8rem;
             color: #457b9d;
             font-family: 'Montserrat', sans-serif;
         }
         
         .sun-emoji {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             display: inline-block;
             animation: rotateSun 5s linear infinite;
         }
@@ -339,7 +343,7 @@
         @keyframes reveal {
             from { 
                 opacity: 0;
-                transform: translateY(50px);
+                transform: translateY(30px);
             }
             to { 
                 opacity: 1;
@@ -349,13 +353,13 @@
         
         .scroll-indicator {
             position: fixed;
-            bottom: 20px;
+            bottom: 15px;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(255, 255, 255, 0.7);
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-size: 0.9rem;
+            padding: 8px 15px;
+            border-radius: 15px;
+            font-size: 0.8rem;
             display: none;
             z-index: 100;
             animation: bounce 2s infinite;
@@ -363,45 +367,157 @@
         
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
-            40% {transform: translateX(-50%) translateY(-10px);}
-            60% {transform: translateX(-50%) translateY(-5px);}
+            40% {transform: translateX(-50%) translateY(-8px);}
+            60% {transform: translateX(-50%) translateY(-4px);}
         }
         
-        @media (max-width: 600px) {
+        /* Media queries para diferentes tamaños de pantalla */
+        @media (min-width: 400px) {
+            .gift-box {
+                width: 180px;
+                height: 180px;
+            }
+            
             h1 {
                 font-size: 2.2rem;
             }
-            
-            .message p {
-                font-size: 1.2rem;
+        }
+        
+        @media (min-width: 500px) {
+            .container {
+                padding: 25px;
             }
             
             .flower {
-                transform: scale(0.8);
+                width: 120px;
+                height: 120px;
             }
             
-            .controls {
-                flex-direction: column;
-                align-items: center;
+            .petal {
+                width: 40px;
+                height: 80px;
+                left: 40px;
             }
             
-            button {
-                width: 80%;
-            }
-            
-            .gift-box {
-                width: 150px;
+            .stem {
                 height: 150px;
             }
             
+            .leaf {
+                top: 90px;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .main-wrapper {
+                padding: 20px;
+            }
+            
+            .container {
+                max-width: 700px;
+                padding: 30px;
+            }
+            
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            .message p {
+                font-size: 1.4rem;
+            }
+            
+            .gift-box {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .gift-message {
+                font-size: 1.5rem;
+            }
+            
+            .sunflower-field {
+                margin: 35px 0;
+                gap: 20px;
+            }
+            
+            .flower {
+                width: 140px;
+                height: 140px;
+            }
+            
+            .petal {
+                width: 45px;
+                height: 90px;
+                left: 47.5px;
+            }
+            
+            .stem {
+                height: 180px;
+                width: 10px;
+            }
+            
+            .leaf {
+                top: 110px;
+            }
+        }
+        
+        @media (min-width: 992px) {
+            h1 {
+                font-size: 3.2rem;
+            }
+        }
+        
+        /* Orientación horizontal en móviles */
+        @media (max-height: 600px) and (orientation: landscape) {
             .main-wrapper {
                 padding: 10px;
+            }
+            
+            .gift-container {
+                min-height: 80vh;
+            }
+            
+            .gift-box {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .container {
+                margin: 10px 0;
+            }
+            
+            .sunflower-field {
+                min-height: 150px;
+                margin: 15px 0;
+            }
+            
+            .flower {
+                width: 80px;
+                height: 80px;
+                margin-bottom: -15px;
+            }
+            
+            .petal {
+                width: 28px;
+                height: 55px;
+                left: 26px;
+            }
+            
+            .stem {
+                height: 90px;
+                width: 6px;
+            }
+            
+            .leaf {
+                top: 60px;
+                width: 25px;
+                height: 15px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="scroll-indicator" id="scrollIndicator">⮟ Desplázate hacia abajo ⮟</div>
+    <div class="scroll-indicator" id="scrollIndicator">⮟ Desplázate ⮟</div>
     
     <div class="main-wrapper" id="mainWrapper">
         <div class="gift-container" id="giftContainer">
@@ -411,7 +527,7 @@
                 <div class="ribbon"></div>
                 <div class="bow"></div>
             </div>
-            <div class="gift-message">¡Haz clic en la caja para revelar tu regalo!</div>
+            <div class="gift-message">¡Toca la caja para revelar tu regalo!</div>
         </div>
         
         <div class="container" id="mainContainer">
@@ -453,24 +569,6 @@
                         <div class="leaf"></div>
                     </div>
                 </div>
-                
-                <!-- Girasol 3 -->
-                <div class="sunflower">
-                    <div class="flower">
-                        <div class="petals" id="petals3">
-                            <!-- Los pétalos se generarán con JavaScript -->
-                        </div>
-                        <div class="center">
-                            <div class="center-inner">
-                                <div class="center-detail"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="stem">
-                        <div class="leaf"></div>
-                        <div class="leaf"></div>
-                    </div>
-                </div>
             </div>
             
             <div class="message">
@@ -479,12 +577,12 @@
             </div>
             
             <div class="controls">
-                <button id="playButton">▶ Reproducir Música</button>
-                <button id="pauseButton">⏸ Pausar Música</button>
+                <button id="playButton">▶ Reproducir</button>
+                <button id="pauseButton">⏸ Pausar</button>
             </div>
             
             <div class="instructions">
-                💡 Para una mejor experiencia, abre esta página en Chrome o Edge. Si la música no funciona, asegúrate de tener el archivo "flores-amarillas.mp3" en la misma carpeta.
+                💡 Asegúrate de tener el archivo "flores-amarillas.mp3" en la misma carpeta.
             </div>
         </div>
     </div>
@@ -529,24 +627,16 @@
                         console.log("Error al reproducir audio automáticamente: ", e);
                         // Si falla la reproducción automática, mostramos un mensaje
                         document.getElementById('playButton').style.backgroundColor = '#ff6b6b';
-                        document.getElementById('playButton').textContent = '⚠️ Click para reproducir';
+                        document.getElementById('playButton').textContent = '⚠️ Toca para reproducir';
                     });
                 }, 500);
-                
-                // Hacer scroll suave hacia el contenido después de un breve delay
-                setTimeout(() => {
-                    mainWrapper.scrollTo({
-                        top: mainContainer.offsetTop - 20,
-                        behavior: 'smooth'
-                    });
-                }, 800);
             }, 1000);
         });
         
         // Crear pétalos para cada girasol
         function createPetals() {
             const petalsContainers = document.querySelectorAll('.petals');
-            const petalCount = 16;
+            const petalCount = 14; // Reducido para móviles
             
             petalsContainers.forEach(container => {
                 for (let i = 0; i < petalCount; i++) {
@@ -562,7 +652,7 @@
         document.getElementById('playButton').addEventListener('click', () => {
             audio.play().catch(e => {
                 console.log("Error al reproducir audio: ", e);
-                alert("Para reproducir la música, necesitas interactuar con la página primero. Haz clic en cualquier parte de la página y luego en reproducir.");
+                alert("Para reproducir la música, toca primero cualquier parte de la página y luego en reproducir.");
             });
         });
         
@@ -572,7 +662,7 @@
         
         // Ocultar indicador de scroll cuando el usuario se desplace
         mainWrapper.addEventListener('scroll', function() {
-            if (mainWrapper.scrollTop > 100) {
+            if (mainWrapper.scrollTop > 50) {
                 scrollIndicator.style.display = 'none';
             }
         });
@@ -581,6 +671,14 @@
         document.body.addEventListener('click', function() {
             // Este evento vacío sirve para desbloquear la reproducción de audio en algunos navegadores
         }, { once: true });
+        
+        // Ajustar diseño en carga según el tamaño de pantalla
+        window.addEventListener('load', function() {
+            if (window.innerWidth < 768) {
+                // Para móviles, reducir a 2 girasoles en lugar de 3
+                document.querySelector('.sunflower-field').innerHTML = document.querySelector('.sunflower-field').innerHTML;
+            }
+        });
     </script>
 </body>
 </html>
