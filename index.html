@@ -175,6 +175,7 @@
             flex-wrap: wrap;
             margin: 15px 0;
             gap: 15px;
+            position: relative;
         }
         
         .bouquet {
@@ -184,6 +185,7 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease;
+            cursor: pointer;
         }
         
         .bouquet:hover {
@@ -249,6 +251,46 @@
             font-size: 1.5rem;
             display: inline-block;
             animation: rotateSun 5s linear infinite;
+        }
+        
+        /* Estilos para los mensajes flotantes */
+        .floating-message {
+            position: absolute;
+            background: rgba(255, 235, 59, 0.95);
+            color: #333;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            pointer-events: none;
+        }
+        
+        .floating-message.visible {
+            opacity: 1;
+            transform: translateY(-20px);
+        }
+        
+        @keyframes floatMessage {
+            0% {
+                opacity: 0;
+                transform: translateY(0);
+            }
+            20% {
+                opacity: 1;
+                transform: translateY(-20px);
+            }
+            80% {
+                opacity: 1;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
         }
         
         @keyframes rotateSun {
@@ -326,6 +368,11 @@
                 max-width: 220px;
                 max-height: 200px;
             }
+            
+            .floating-message {
+                font-size: 1.8rem;
+                padding: 15px 25px;
+            }
         }
         
         @media (min-width: 992px) {
@@ -368,6 +415,11 @@
             .message p {
                 font-size: 1rem;
             }
+            
+            .floating-message {
+                font-size: 1.3rem;
+                padding: 8px 15px;
+            }
         }
     </style>
 </head>
@@ -387,13 +439,17 @@
             <h1>¡Feliz Cumpleaños<br>Maria Camila!</h1>
             
             <div class="bouquet-container">
-                <img src="girasol.gif" alt="Ramo de girasoles" class="bouquet">
-                <img src="girasol.gif" alt="Ramo de girasoles" class="bouquet">
+                <img src="girasol.gif" alt="Ramo de girasoles" class="bouquet" id="bouquet1">
+                <img src="girasol.gif" alt="Ramo de girasoles" class="bouquet" id="bouquet2">
+                
+                <!-- Mensajes flotantes -->
+                <div class="floating-message" id="message1">Eres</div>
+                <div class="floating-message" id="message2">Increíble</div>
             </div>
             
             <div class="message">
                 <p>Espero disfrutes mucho este día, que siempre el sol <span class="sun-emoji">☀️</span> ilumine tu magica sonrisa.<br> 
-                ¡Feliz Cumpleaños!</p>
+                ¡Muy Feliz Cumpleaños!</p>
             </div>
             
             <div class="controls">
@@ -402,7 +458,7 @@
             </div>
             
             <div class="instructions">
-                💡 Asegúrate de tener el archivo "flores-amarillas.mp3" en la misma carpeta.
+                💡 Haz clic en los ramos de girasoles para descubrir un mensaje especial
             </div>
         </div>
     </div>
@@ -418,6 +474,10 @@
         const giftBox = document.getElementById('giftBox');
         const mainContainer = document.getElementById('mainContainer');
         const audio = document.getElementById('backgroundMusic');
+        const bouquet1 = document.getElementById('bouquet1');
+        const bouquet2 = document.getElementById('bouquet2');
+        const message1 = document.getElementById('message1');
+        const message2 = document.getElementById('message2');
         
         // Función para revelar el contenido al hacer clic en la caja
         giftBox.addEventListener('click', function() {
@@ -445,6 +505,33 @@
             }, 1000);
         });
         
+        // Función para mostrar mensajes flotantes
+        function showFloatingMessage(messageElement, bouquetElement, text) {
+            // Posicionar el mensaje sobre la imagen
+            const rect = bouquetElement.getBoundingClientRect();
+            messageElement.textContent = text;
+            messageElement.style.left = `${rect.left + rect.width/2}px`;
+            messageElement.style.top = `${rect.top}px`;
+            messageElement.style.transform = 'translate(-50%, -100%)';
+            
+            // Mostrar el mensaje con animación
+            messageElement.style.animation = 'floatMessage 2s forwards';
+            
+            // Ocultar el mensaje después de la animación
+            setTimeout(() => {
+                messageElement.style.animation = '';
+            }, 2000);
+        }
+        
+        // Eventos para los ramos de girasoles
+        bouquet1.addEventListener('click', function() {
+            showFloatingMessage(message1, bouquet1, 'Eres');
+        });
+        
+        bouquet2.addEventListener('click', function() {
+            showFloatingMessage(message2, bouquet2, 'Increíble');
+        });
+        
         // Controles de música
         document.getElementById('playButton').addEventListener('click', () => {
             audio.play().catch(e => {
@@ -464,5 +551,3 @@
     </script>
 </body>
 </html>
-
-
